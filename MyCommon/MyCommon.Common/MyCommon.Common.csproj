@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CommException.cs" />
     <Compile Include="DataCommon\DataHelper.cs" />
     <Compile Include="FileCommon\FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

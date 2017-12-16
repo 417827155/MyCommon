@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MyCommon.Common.Utility
 {
@@ -280,6 +281,186 @@ namespace MyCommon.Common.Utility
                 }
             }
         }
-        #endregion 
+        #endregion
+
+        #region 日期
+        /// <summary>
+        /// 日期差 日
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static string DateDiff(string sdmin, string sdmax)
+        {
+            try
+            {
+                DateTime dt1 = Convert.ToDateTime(sdmin);
+                DateTime dt2 = Convert.ToDateTime(sdmax);
+                return DateDiff(dt1,dt2) ;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// 日期差
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static string DateDiff(DateTime sdmin, DateTime sdmax)
+        {
+            try
+            {
+                TimeSpan ts1 = new TimeSpan(sdmin.Ticks);
+                TimeSpan ts2 = new TimeSpan(sdmax.Ticks);
+                TimeSpan ts = ts1.Subtract(ts2).Duration();
+                var result = ts.Days + "-" + ts.Hours + "-" + ts.Minutes + "" + ts.Seconds;
+                return  result;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// 日期差 日
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static double DateDiffDay(DateTime sdmin, DateTime sdmax)
+        {
+            try
+            {
+                TimeSpan ts = sdmax - sdmin;
+                return ts.TotalDays;
+            }
+            catch
+            {
+                return double.MinValue;
+            }
+        }
+        /// <summary>
+        /// 日期差 小时
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static double DateDiffHour(DateTime sdmin, DateTime sdmax)
+        {
+            try
+            {
+                TimeSpan ts = sdmax - sdmin;
+                return ts.TotalHours;
+            }
+            catch
+            {
+                return double.MinValue;
+            }
+        }
+        /// <summary>
+        /// 日期差 分钟
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static double DateDiffMinutes(DateTime sdmin, DateTime sdmax)
+        {
+            try
+            {
+                TimeSpan ts = sdmax - sdmin;
+                return ts.TotalMinutes;
+            }
+            catch
+            {
+                return double.MinValue;
+            }
+        }
+        /// <summary>
+        /// 日期差 秒
+        /// </summary>
+        /// <param name="sdmin">起始日期</param>
+        /// <param name="sdmax">结束日期</param>
+        /// <returns></returns>
+        public static double DateDiffSecond(DateTime sdmin, DateTime sdmax)
+        {
+            try
+            {
+                TimeSpan ts = sdmax - sdmin;
+                return ts.TotalSeconds;
+            }
+            catch
+            {
+                return double.MinValue;
+            }
+        }
+        #endregion
+
+        #region 用户输入处理
+        /// <summary>
+		/// 将用户输入的字符串转换为可换行、替换Html编码、无危害数据库特殊字符、去掉首尾空白、的安全方便代码。
+		/// </summary>
+		/// <param name="inputString">用户输入字符串</param>
+		public static string ConvertStr(string inputString)
+        {
+            string retVal = inputString;
+            //retVal=retVal.Replace("&","&amp;"); 
+            retVal = retVal.Replace("\"", "&quot;");
+            retVal = retVal.Replace("<", "&lt;");
+            retVal = retVal.Replace(">", "&gt;");
+            retVal = retVal.Replace(" ", "&nbsp;");
+            retVal = retVal.Replace("  ", "&nbsp;&nbsp;");
+            retVal = retVal.Replace("\t", "&nbsp;&nbsp;");
+            retVal = retVal.Replace("\r", "<br>");
+            return retVal;
+        }
+
+        /// <summary>
+        /// 将用户输入的字符串转换为可换行、替换Html编码、无危害数据库特殊字符、去掉首尾空白、的安全方便代码。
+        /// </summary>
+        /// <param name="inputString">用户输入字符串</param>
+        /// <returns></returns>
+        public static string InputText(string inputString)
+        {
+            string retVal = inputString;
+            retVal = ConvertStr(retVal);
+            retVal = retVal.Replace("[url]", "");
+            retVal = retVal.Replace("[/url]", "");
+            return retVal;
+        }
+
+
+        /// <summary>
+        /// 将html代码显示在网页上
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
+		public static string OutputText(string inputString)
+        {
+            string retVal = System.Web.HttpUtility.HtmlDecode(inputString);
+            retVal = retVal.Replace("<br>", "");
+            retVal = retVal.Replace("&amp", "&;");
+            retVal = retVal.Replace("&quot;", "\"");
+            retVal = retVal.Replace("&lt;", "<");
+            retVal = retVal.Replace("&gt;", ">");
+            retVal = retVal.Replace("&nbsp;", " ");
+            retVal = retVal.Replace("&nbsp;&nbsp;", "  ");
+            return retVal;
+        }
+
+        /// <summary>
+        /// 转换成url
+        /// </summary>
+        /// <param name="inputString">用户输入</param>
+        /// <returns></returns>
+        public static string ToUrl(string inputString)
+        {
+            string retVal = inputString;
+            retVal = ConvertStr(retVal);
+            return Regex.Replace(retVal, @"\[url](?<x>[^\]]*)\[/url]", @"<a href=""$1"" target=""_blank"">$1</a>", RegexOptions.IgnoreCase);
+        }
+        #endregion
     }
 }
