@@ -138,6 +138,12 @@
     <Folder Include="Areas\SystemManager\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyCommon.Common\MyCommon.Common.csproj">
+      <Project>{760384ab-31d3-4776-acfa-493cd7d4d835}</Project>
+      <Name>MyCommon.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

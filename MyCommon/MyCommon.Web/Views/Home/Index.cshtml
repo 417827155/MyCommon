@@ -6,3 +6,50 @@
 
 <h2>Index</h2>
 
+@using System.Text;
+
+@MyCommon.Common.FileCommon.FileHelper.GetFilePath("")
+@{ 
+    var tempPath1 = MyCommon.Common.FileCommon.FileHelper.GetFilePath("").Replace("Home","");
+    var tempPath2 = MyCommon.Common.FileCommon.FileHelper.GetFilePath("").TrimEnd(("/Home").ToCharArray());
+}
+<br />
+@MyCommon.Common.FileCommon.FileHelper.IsExistFile(@Path.Combine(tempPath1, "Golbal.asax"))
+@MyCommon.Common.FileCommon.FileHelper.IsExistFile(@Path.Combine(tempPath1, "Golbal.asax"))
+<br />
+@MyCommon.Common.FileCommon.FileHelper.IsExistDirectory(tempPath1)
+@MyCommon.Common.FileCommon.FileHelper.IsExistDirectory(tempPath2)
+<br />
+@foreach (var item in MyCommon.Common.FileCommon.FileHelper.GetFileNames(tempPath1))
+{
+    <br />@item.ToString();
+}
+
+<br />
+@foreach (var item in MyCommon.Common.FileCommon.FileHelper.GetDirectories(tempPath1))
+{
+    <br />@item.ToString();
+}
+
+<br />
+@foreach (var item in MyCommon.Common.FileCommon.FileHelper.GetFileNames(tempPath1,"*.cshtml",true))
+{
+    <br />@item.ToString();
+}
+
+<br />
+@MyCommon.Common.FileCommon.FileHelper.IsEmptyDirectory(tempPath1)
+
+<br />
+@MyCommon.Common.FileCommon.FileHelper.Contains(tempPath1,"Global.asax")
+
+<br />
+@Path.Combine(tempPath1, "Golbal.asax")
+
+<br />
+@MyCommon.Common.FileCommon.FileHelper.GetExtension(Path.Combine(tempPath1, "Global.asax"))
+
+<br />
+
+@MyCommon.Common.FileCommon.FileHelper.GetFileAttibe(Path.Combine(tempPath1, "Global.asax"))
+

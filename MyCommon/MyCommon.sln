@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCommon.Web", "MyCommon.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCommon.Common", "MyCommon.Common\MyCommon.Common.csproj", "{760384AB-31D3-4776-ACFA-493CD7D4D835}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCommon.Wcf", "MyCommon.Wcf\MyCommon.Wcf.csproj", "{58ADD662-3B57-4055-BAAC-ED916A4CBC2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCommon.WinForm", "MyCommon.WinForm\MyCommon.WinForm.csproj", "{8E1B71AC-75A4-48A8-800C-4842B7E7962E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{760384AB-31D3-4776-ACFA-493CD7D4D835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{760384AB-31D3-4776-ACFA-493CD7D4D835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{760384AB-31D3-4776-ACFA-493CD7D4D835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58ADD662-3B57-4055-BAAC-ED916A4CBC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58ADD662-3B57-4055-BAAC-ED916A4CBC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58ADD662-3B57-4055-BAAC-ED916A4CBC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58ADD662-3B57-4055-BAAC-ED916A4CBC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1B71AC-75A4-48A8-800C-4842B7E7962E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1B71AC-75A4-48A8-800C-4842B7E7962E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1B71AC-75A4-48A8-800C-4842B7E7962E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1B71AC-75A4-48A8-800C-4842B7E7962E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
